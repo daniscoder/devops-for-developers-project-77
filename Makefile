@@ -14,3 +14,12 @@ apply:
 destroy:
 	cd terraform && terraform destroy \
 		-var="do_token=$(DO_TOKEN)"
+
+install:
+	ansible-galaxy install -r ansible/requirements.yml
+
+setup:
+	ansible-playbook ansible/playbook.yml -i ansible/inventory.ini --tags setup --ask-vault-pass
+
+deploy:
+	ansible-playbook ansible/playbook.yml -i ansible/inventory.ini --tags deploy --ask-vault-pass

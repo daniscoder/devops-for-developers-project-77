@@ -1,0 +1,25 @@
+- hosts: all
+  become: true
+  tags: setup
+
+  vars:
+    pip_install_packages:
+      - name: docker
+
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+- hosts: all
+  become: true
+  tags: deploy
+
+  tasks:
+    - name: Run Redmine container
+      community.docker.docker_container:
+        name: redmine
+        image: redmine
+        state: started
+        restart_policy: always
+        ports:
+          - "{{ app_port }}:3000"

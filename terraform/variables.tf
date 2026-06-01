@@ -12,3 +12,13 @@ variable "spaces_secret_key" {
   description = "Spaces secret key"
   sensitive   = true
 }
+
+variable "datadog_api_key" {
+  description = "DataDog API key"
+  sensitive   = true
+}
+
+variable "datadog_app_key" {
+  description = "DataDog Application key"
+  sensitive   = true
+}

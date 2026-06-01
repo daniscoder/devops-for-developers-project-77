@@ -12,6 +12,15 @@
 
 - hosts: all
   become: true
+  tags: monitoring
+
+  tasks:
+    - name: Import Datadog Agent role
+      import_role:
+        name: datadog.dd.agent
+
+- hosts: all
+  become: true
   tags: deploy
 
   tasks:

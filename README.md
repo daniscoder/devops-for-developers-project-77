@@ -1,3 +1,6 @@
+### Hexlet tests and linter status:
+[![Actions Status](https://github.com/daniscoder/devops-for-developers-project-77/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/daniscoder/devops-for-developers-project-77/actions)
+
 # Devops For Developers Project 77
 
 Развёртывание инфраструктуры через Terraform и деплой приложения через Ansible.
@@ -8,9 +11,21 @@ https://daniscoder.online
 
 ## Требования
 
-* Terraform
-* Ansible
+* Terraform >= 1.0
+* Ansible >= 2.10
 * Make
+
+## Подготовка
+
+Создай файл с паролем для Ansible Vault:
+```bash
+echo "your_vault_password" > .vault_password
+```
+
+Скопируй пример переменных окружения:
+```bash
+cp .env.example .env
+```
 
 ## Инициализация Terraform
 
@@ -21,7 +36,7 @@ make init SPACES_ACCESS_KEY=<key> SPACES_SECRET_KEY=<secret>
 ## Создание инфраструктуры
 
 ```bash
-make apply DO_TOKEN=<token>
+make apply DO_TOKEN=<token> DATADOG_API_KEY=<key> DATADOG_APP_KEY=<key>
 ```
 
 ## Установка зависимостей Ansible
@@ -40,6 +55,12 @@ make setup
 
 ```bash
 make deploy
+```
+
+## Мониторинг
+
+```bash
+make monitoring
 ```
 
 ## Удаление инфраструктуры
